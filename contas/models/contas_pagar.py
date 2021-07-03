@@ -5,6 +5,45 @@ from django.db.models.deletion import SET_NULL
 from .forma_pagamento import *
 
 
+# Contas QuerySet
+class PagarQuerySet(models.QuerySet):
+    # Query para retornar as contas pagas
+    def contas_pagas(self):
+        return self.filter(situacao="P")
+
+    # Query para retonar as contas em aberto
+    def contas_em_aberto(self):
+        return self.filter(situacao="N")
+
+    # Query para retornar contas entre período
+    def contas_entre_datas(self, dataInicio, dataFim):
+        return self.filter(vencimento__range=(dataInicio, dataFim))
+
+
+# Contas Manager
+class PagarManager(models.Manager):
+
+    def get_queryset(self):
+        return PagarQuerySet(self.model, using=self._db)
+
+    # Retornar todas as contas
+    def obter_todas_contas_pagar(self):
+        return self.all()
+
+    # Retornar contas pagas
+    def obter_contas_pagas(self):
+        return self.get_queryset().contas_pagas()
+
+    # Retornar contas a pagar
+    def obter_contas_em_aberto(self):
+        return self.get_queryset().contas_em_aberto()
+
+    # Retornar contas com vencimento entre datas
+    def obter_contas_vencimento_entre(self):
+        return self.get_queryset().contas_entre_datas()
+
+
+# Modelo da classificação de contas a pagar
 class ClassificacaoPagar(models.Model):
 
     sigla = models.CharField(max_length=2, null=False, default='OT')
@@ -14,6 +53,7 @@ class ClassificacaoPagar(models.Model):
         return self.descricao
 
 
+# Modelo das contas a pagar
 class ContasPagar(models.Model):
 
     sit_escolha = [('S', 'Pago'), ('N', 'A pagar')]
@@ -40,5 +80,8 @@ class ContasPagar(models.Model):
                                 default='N',
                                 max_length=1)
 
+    pagar_objects = PagarManager()
+
     def __str__(self):
+        # Retorna descrição, situação, data vencimento e valor
         return (f"{self.descricao} - {self.situacao} - {self.data_vencimento} - {self.valor}")
