@@ -29,6 +29,10 @@ class ReceberManager(models.Manager):
     def obter_todas_contas_receber(self):
         return self.all()
 
+    # Retornar detalhes da conta
+    def obter_detalhes_conta(self, idconta):
+        return self.get(id=idconta)
+
     # Retornar contas pagas
     def obter_contas_recebidas(self):
         return self.get_queryset().contas_recebidas()
