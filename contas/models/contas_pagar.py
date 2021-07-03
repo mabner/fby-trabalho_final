@@ -19,8 +19,8 @@ class SituacaoPagar(models.Model):
 
 class ClassificacaoPagar(models.Model):
 
-    sigla = models.CharField(max_length=2, null=False)
-    descricao = models.CharField(max_length=20, null=False)
+    sigla = models.CharField(max_length=2, null=False, default='OT')
+    descricao = models.CharField(max_length=20, null=False, default='Outros')
 
     def __str__(self):
         return self.descricao
@@ -31,7 +31,7 @@ class ContasPagar(models.Model):
     data_vencimento = models.DateField(null=False)
     data_pagamento = models.DateField(default=utils.timezone.now,
                                       null=False)
-    valor = models.FloatField(null=False)
+    valor = models.FloatField(null=False, default=0)
     descricao = models.TextField(max_length=300, null=True)
     classificacao = models.ForeignKey(ClassificacaoPagar,
                                       on_delete=SET_NULL,
