@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from django.db.models.deletion import SET_NULL
-from .contas_pagar import FormaPagamento
+from .forma_pagamento import *
 
 
 class SituacaoReceber(models.Model):
@@ -12,19 +12,17 @@ class SituacaoReceber(models.Model):
                                default='N',
                                max_length=1)
 
+    def __str__(self):
+        return self.escolha
 
-# Alterar para tabela com chave
+
 class ClassificacaoReceber(models.Model):
-    class_escolha = [
-        ('SE', 'Serviço prestado'),
-        ('SA', 'Salário'),
-        ('VE', 'Vendas'),
-    ]
 
-    classificacao_receber = models.CharField(
-        choices=class_escolha,
-        default='SE',
-        max_length=2)
+    sigla = models.CharField(max_length=2, null=False)
+    descricao = models.CharField(max_length=20, null=False)
+
+    def __str__(self):
+        return self.descricao
 
 
 class ContasReceber(models.Model):
