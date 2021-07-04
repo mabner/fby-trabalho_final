@@ -8,10 +8,12 @@
 	</head>
 	<body>
 		<h1>Conta a Pagar Detalhada</h1>
-    <a href="/pagar">Voltar</a>
+		<a href="/pagar">Voltar</a>
+		<a href="/">Home</a>
 		<!-- detalhe_conta_pagar definido no retorno da função no views.py -->
-    {% for conta in detalhe_conta_pagar %}
+		{% for conta in detalhe_conta_pagar %}
 		<div>
+			<div>Código: {{conta.id}}</div>
 			<div>Vencimento: {{conta.data_vencimento | date:"d/m/Y"}}</div>
 			<div>Pagamento: {{conta.data_pagamento}}</div>
 			<div>Valor: {{conta.valor}}</div>
@@ -20,6 +22,6 @@
 			<div>Forma de pagamento: {{conta.formapagar}}</div>
 			<div>Situação: {{conta.situacao}}</div>
 		</div>
-    {% endfor %}
+		{% endfor %}
 	</body>
 </html>

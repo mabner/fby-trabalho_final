@@ -11,6 +11,10 @@ class ReceberQuerySet(models.QuerySet):
     def contas_recebidas(self):
         return self.filter(situacao="R")
 
+    # Query para retornar os detalhes da conta a receber
+    def detalhes_conta(self, idconta):
+        return self.filter(id=idconta)
+
     # Query para retonar as contas não recebidas
     def contas_nao_recebidas(self):
         return self.filter(situacao="N")
@@ -41,7 +45,7 @@ class ReceberManager(models.Manager):
 
     # Retornar detalhes da conta
     def obter_detalhes_conta(self, idconta):
-        return self.get(id=idconta)
+        return self.get_queryset().detalhes_conta(idconta)
 
     # Retornar contas pagas
     def obter_contas_recebidas(self):

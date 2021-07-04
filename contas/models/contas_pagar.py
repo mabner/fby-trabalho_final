@@ -11,11 +11,9 @@ class PagarQuerySet(models.QuerySet):
     def contas_pagas(self):
         return self.filter(situacao="P")
 
-    # ------------------------------------------------------------------
-    # Query para retornar as contas pagas
+    # Query para retornar os detalhes da conta a pagar
     def detalhes_conta(self, idconta):
         return self.filter(id=idconta)
-    # ------------------------------------------------------------------
 
     # Query para retonar as contas em aberto
     def contas_em_aberto(self):

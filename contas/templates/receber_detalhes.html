@@ -8,6 +8,19 @@
 	</head>
 	<body>
 		<h1>Conta a Receber Detalhada</h1>
+		<a href="/receber">Voltar</a>
+		<a href="/">Home</a>
 		{% for conta in detalhe_conta_receber %}
+		<div>
+			<div>Código: {{conta.id}}</div>
+			<div>Vencimento: {{conta.data_expectativa | date:"d/m/Y"}}</div>
+			<div>Pagamento: {{conta.data_recebimento}}</div>
+			<div>Valor: {{conta.valor}}</div>
+			<div>Descrição: {{conta.descricao}}</div>
+			<div>Classificação: {{conta.classificacao}}</div>
+			<div>Forma de pagamento: {{conta.formapagar}}</div>
+			<div>Situação: {{conta.situacao}}</div>
+		</div>
+		{% endfor %}
 	</body>
 </html>
