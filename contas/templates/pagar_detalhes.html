@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Conta a Pagar Detalhada</title>
-	</head>
-	<body>
+{% extends "base_template.html" %}
+{% block content %}
 		<h1>Conta a Pagar Detalhada</h1>
 		<a href="/pagar">Voltar</a>
 		<a href="/">Home</a>
@@ -20,8 +13,16 @@
 			<div>Descrição: {{conta.descricao}}</div>
 			<div>Classificação: {{conta.classificacao}}</div>
 			<div>Forma de pagamento: {{conta.formapagar}}</div>
-			<div>Situação: {{conta.situacao}}</div>
+			<div>
+				Situação:
+				{% if conta.situacao == 'N' %}
+					<span class="sit_em_aberto">Em aberto</span>
+				{% elif conta.situacao == 'P' %}
+					<span class="sit_pago">Pago</span>
+				{% else %}
+					<span class="sit_nao_definida">Não definida</span>
+				{% endif %}
+			</div>
 		</div>
 		{% endfor %}
-	</body>
-</html>
+{% endblock %}

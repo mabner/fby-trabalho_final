@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt">
+	<head>
+		<title>Controle de Contas</title>
+	</head>
+	<body>
+		<div id="sidebar">
+			{% block sidebar %}
+			<a href="/admin">Admin</a>
+			<a href="/pagar">Contas a pagar</a>
+			<a href="/receber">Contas a receber</a>
+			{% endblock %}
+		</div>
+		<hr />
+		<div id="content">{% block content %}{% endblock %}</div>
+	</body>
+</html>

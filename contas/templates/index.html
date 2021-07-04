@@ -1,6 +1,6 @@
+{% extends "base_template.html" %}
+{% block content %}
 <h1>Controle de Contas</h1>
-<a href="/admin">Admin</a>
-<a href="/pagar">Contas a pagar</a>
-<a href="/receber">Contas a receber</a>
 <div>Total a pagar: {{ total.em_aberto }}</div>
 <div>Total a receber: {{ total.a_receber }}</div>
+{% endblock %}
