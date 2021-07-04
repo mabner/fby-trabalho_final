@@ -9,8 +9,8 @@ urlpatterns = [
     path('classpagar', views.classif_pagar, name='classpagar'),
     path('pagar', views.pagar, name='pagar'),
     path('receber', views.receber, name='receber'),
-    path('detalhes_receber/<int:idconta>',
+    path('receber/<int:idconta>',
          views.detalhar_conta_receber, name='detalhes_receber'),
-    path('detalhes_pagar/<int:idconta>',
+    path('pagar/<int:idconta>',
          views.detalhar_conta_pagar, name='detalhes_pagar')
 ]
