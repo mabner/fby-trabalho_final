@@ -2,6 +2,7 @@
 from django.db import models
 from django.db.models.deletion import SET_NULL
 from .forma_pagamento import *
+from django.db.models import Sum
 
 
 # Contas QuerySet
@@ -13,6 +14,11 @@ class ReceberQuerySet(models.QuerySet):
     # Query para retonar as contas não recebidas
     def contas_nao_recebidas(self):
         return self.filter(situacao="N")
+
+    # Query para retornar o valor total das contas a receber
+    def total_a_receber(self):
+        return float(self.filter(situacao="N").aggregate(
+            Sum('valor'))['valor__sum'])
 
     # Query para retornar contas entre período
     def contas_entre_datas(self, dataInicio, dataFim):
@@ -28,6 +34,10 @@ class ReceberManager(models.Manager):
     # Retornar todas as contas
     def obter_todas_contas_receber(self):
         return self.all()
+
+    # Retornar a soma das contas em aberto
+    def obter_total_a_receber(self):
+        return self.get_queryset().total_a_receber()
 
     # Retornar detalhes da conta
     def obter_detalhes_conta(self, idconta):
@@ -67,7 +77,7 @@ class ContasReceber(models.Model):
     data_recebimento = models.DateField(
         auto_now=False, auto_now_add=False, null=True, blank=True)
 
-    valor = models.FloatField(null=False, default=0)
+    valor = models.FloatField(null=False, default=0.00)
 
     descricao = models.TextField(max_length=300, null=True)
 

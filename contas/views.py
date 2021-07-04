@@ -4,7 +4,11 @@ from .models import *
 
 
 def index(request):
-    return render(request, 'index.html')
+    total = {
+        "em_aberto": ContasPagar.pagar_objects.obter_total_em_aberto(),
+        "a_receber": ContasReceber.receber_objects.obter_total_a_receber(),
+    }
+    return render(request, 'index.html', {'total': total})
 
 
 def formas_pagamento(request):

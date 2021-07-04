@@ -2,6 +2,7 @@
 from django.db import models
 from django.db.models.deletion import SET_NULL
 from .forma_pagamento import *
+from django.db.models import Sum
 
 
 # Contas QuerySet
@@ -10,9 +11,20 @@ class PagarQuerySet(models.QuerySet):
     def contas_pagas(self):
         return self.filter(situacao="P")
 
+    # ------------------------------------------------------------------
+    # Query para retornar as contas pagas
+    def detalhes_conta(self, idconta):
+        return self.filter(id=idconta)
+    # ------------------------------------------------------------------
+
     # Query para retonar as contas em aberto
     def contas_em_aberto(self):
         return self.filter(situacao="N")
+
+    # Query para retornar o valor total das contas em aberto
+    def total_em_aberto(self):
+        return float(self.filter(situacao="N").aggregate(
+            Sum('valor'))['valor__sum'])
 
     # Query para retornar contas entre período
     def contas_entre_datas(self, dataInicio, dataFim):
@@ -29,9 +41,13 @@ class PagarManager(models.Manager):
     def obter_todas_contas_pagar(self):
         return self.all()
 
+    # Retornar a soma das contas em aberto
+    def obter_total_em_aberto(self):
+        return self.get_queryset().total_em_aberto()
+
     # Retornar detalhes da conta
     def obter_detalhes_conta(self, idconta):
-        return self.get(id=idconta)
+        return self.get_queryset().detalhes_conta(idconta)
 
     # Retornar contas pagas
     def obter_contas_pagas(self):
@@ -66,7 +82,7 @@ class ContasPagar(models.Model):
     data_pagamento = models.DateField(
         auto_now=False, auto_now_add=False, null=True, blank=True)
 
-    valor = models.FloatField(null=False, default=0)
+    valor = models.FloatField(null=False, default=0.00)
 
     descricao = models.TextField(max_length=300, null=True)
 
