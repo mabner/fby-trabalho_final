@@ -10,5 +10,7 @@ urlpatterns = [
     path('pagar', views.pagar, name='pagar'),
     path('receber', views.receber, name='receber'),
     path('detalhes_receber/<int:idconta>',
-         views.detalhar_conta_receber, name='detalhes_receber')
+         views.detalhar_conta_receber, name='detalhes_receber'),
+    path('detalhes_pagar/<int:idconta>',
+         views.detalhar_conta_pagar, name='detalhes_pagar')
 ]

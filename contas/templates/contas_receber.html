@@ -8,8 +8,19 @@
 	</head>
 	<body>
 		<h1>Listagem de Contas a Receber</h1>
+    <a href="/">Home</a>
 
-    {% for conta in conta_receber %}
+		{% for conta in contas_receber %}
+
+		<div class="listagem_contas">
+			<div>Código: {{conta.id}} - Previsão: {{conta.data_expectativa | date:"d/m/Y"}} - Valor: {{conta.valor}}</div>
+			<div>
+				Descrição:
+				<a href="/detalhes_receber/{{conta.id}}">{{conta.descricao}}</a>
+			</div>
+			<div>Situação: {{conta.situacao}}</div>
+		</div>
+		{% endfor %}
 
 	</body>
 </html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Conta a Pagar Detalhada</title>
+	</head>
+	<body>
+		<h1>Conta a Pagar Detalhada</h1>
+    <a href="/pagar">Voltar</a>
+    {% for conta in contas_pagar %}
+		<div>
+			<div>{{conta.data_vencimento}}</div>
+			<div>{{conta.data_pagamento}}</div>
+			<div>{{conta.valor}}</div>
+			<div>{{conta.descricao}}</div>
+			<div>{{conta.classificacao}}</div>
+			<div>{{conta.formapagar}}</div>
+			<div>{{conta.situacao}}</div>
+		</div>
+    {% endfor %}
+	</body>
+</html>

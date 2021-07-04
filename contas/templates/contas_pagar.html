@@ -8,8 +8,18 @@
 	</head>
 	<body>
 		<h1>Listagem de Contas a Pagar</h1>
+    <a href="/">Home</a>
 
-    {% for conta in conta_pagar %}
+		{% for conta in contas_pagar %}
 
+		<div class="listagem_contas">
+			<div>Código: {{conta.id}} - Vencimento: {{conta.data_vencimento | date:"d/m/Y"}} - Valor: {{conta.valor}}</div>
+			<div>
+				Descrição:
+				<a href="/detalhes_pagar/{{conta.id}}">{{conta.descricao}}</a>
+			</div>
+			<div>Situação: {{conta.situacao}}</div>
+		</div>
+		{% endfor %}
 	</body>
 </html>

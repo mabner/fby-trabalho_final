@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from django import utils
 from django.db import models
 from django.db.models.deletion import SET_NULL
 from .forma_pagamento import *
@@ -29,6 +28,10 @@ class PagarManager(models.Manager):
     # Retornar todas as contas
     def obter_todas_contas_pagar(self):
         return self.all()
+
+    # Retornar detalhes da conta
+    def obter_detalhes_conta(self, idconta):
+        return self.get(id=idconta)
 
     # Retornar contas pagas
     def obter_contas_pagas(self):
