@@ -1,4 +1,5 @@
-from contas.models.contas_pagar import ContasPagar
+from contas.models.contas_pagar import *
+from contas.models.contas_receber import *
 from django.shortcuts import render
 from contas.models import *
 
@@ -7,6 +8,7 @@ def index(request):
     total = {
         "em_aberto": ContasPagar.pagar_objects.obter_total_em_aberto(),
         "a_receber": ContasReceber.receber_objects.obter_total_a_receber(),
+        "saldo": ContasReceber.receber_objects.obter_total_a_receber() - ContasPagar.pagar_objects.obter_total_em_aberto()
     }
     return render(request, 'index.html', {'total': total})
 

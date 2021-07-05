@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from django.db.models.deletion import SET_NULL
-from . import *
+from contas.models import *
 from django.db.models import Sum
 
 
@@ -23,6 +23,21 @@ class PagarQuerySet(models.QuerySet):
     def total_em_aberto(self):
         return float(self.filter(situacao="N").aggregate(
             Sum('valor'))['valor__sum'])
+
+    # Query para retornar o valor total das contas no mês
+    def total_pagar_mes(self, mes, ano):
+        return float(ContasPagar.pagar_objects.filter(data_vencimento__month=mes,
+                                                      data_vencimento__year=ano)
+                     .aggregate(Sum('valor'))['valor__sum'])
+
+    # Query para retonar a soma do mês por classificação
+    def soma_pagar_mes_classificacao(self, mes, ano):
+        soma_mes_class = float(ContasPagar.pagar_objects.filter(data_vencimento__month=mes,
+                                                                data_vencimento__year=ano,
+                                                                classificacao=classificacao)
+                               .aggregate(Sum('valor'))['valor__sum'])
+
+    pass
 
     # Query para retornar contas entre período
     def contas_entre_datas(self, dataInicio, dataFim):

@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-from django.db.models.base import Model
 from django.db.models.deletion import SET_NULL
-from . import *
+from contas.models import *
 from django.db.models import Sum
 
 
@@ -24,6 +23,21 @@ class ReceberQuerySet(models.QuerySet):
     def total_a_receber(self):
         return float(self.filter(situacao="N").aggregate(
             Sum('valor'))['valor__sum'])
+
+    # Query para retornar o valor total das contas no mês
+    def total_receber_mes(self, mes, ano):
+        return float(ContasReceber.receber_objects.filter(data_expectativa__month=mes,
+                                                          data_expectativa__year=ano)
+                     .aggregate(Sum('valor'))['valor__sum'])
+
+    # Query para retonar a soma do mês por classificação
+    def soma_receber_mes_classificacao(self, mes, ano):
+        soma_mes_class = float(ContasReceber.receber_objects.filter(data_expectativa__month=mes,
+                                                                    data_expectativa__year=ano,
+                                                                    classificacao=classificacao)
+                               .aggregate(Sum('valor'))['valor__sum'])
+
+    pass
 
     # Query para retornar contas entre período
     def contas_entre_datas(self, dataInicio, dataFim):

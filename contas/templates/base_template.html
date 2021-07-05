@@ -10,11 +10,12 @@
 		<title>Controle de Contas</title>
 	</head>
 
-	<body>
+	<body class="font-monospace">
 		<div id="sidebar" class="btn-group btn-group-sm" role="group">
 			{% block sidebar %}
 			<a href="/admin" class="btn btn-outline-primary">Admin</a>
 			<a href="{% url 'index' %}" class="btn btn-outline-primary">Home</a>
+			<a href="{% url 'fluxo' %}" class="btn btn-outline-primary">Fluxo de Caixa</a>
 			<a href="{% url 'pagar' %}" class="btn btn-outline-primary">Contas a pagar</a>
 			<a href="{% url 'receber' %}" class="btn btn-outline-primary">Contas a receber</a>
 			<button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">
