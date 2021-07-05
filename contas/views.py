@@ -16,11 +16,13 @@ def formas_pagamento(request):
 
 
 def classif_receber(request):
-    return HttpResponse("Cadastro de Classificação de Contas a Receber")
+    classificacao_receber = ClassificacaoReceber.classif_receber_objects.obter_classif_contas_receber(),
+    return render(request, 'classif_contas_receber.html', {'classificacao_receber': classificacao_receber})
 
 
 def classif_pagar(request):
-    return HttpResponse("Cadastro de Classificação de Contas a Pagar")
+    classificacao_pagar = ClassificacaoPagar.classif_pagar_objects.obter_classif_contas_pagar(),
+    return render(request, 'classif_contas_pagar.html', {'classificacao_pagar': classificacao_pagar})
 
 
 def pagar(request):
