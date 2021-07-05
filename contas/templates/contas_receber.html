@@ -1,28 +1,24 @@
-{% extends "base_template.html" %}
-{% block content %}
-		<h1>Listagem de Contas a Receber</h1>
-		<a href="/">Home</a>
+{% extends "base_template.html" %} {% block content %}
+<h1>Listagem de Contas a Receber</h1>
 
-		{% for conta in contas_receber %}
+{% for conta in contas_receber %}
 
-		<div class="listagem_contas">
+<div class="card w-25">
+	<a href="/receber/{{conta.id}}" class="card-header">{{conta.descricao}}</a>
+	<div class="card-body">
+		<div class="card-text">
+			<div>Previsão: {{conta.data_expectativa | date:"d/m/Y"}}</div>
+			<div>Valor: {{conta.valor}}</div>
 			<div>
-				Código: {{conta.id}} - Previsão: {{conta.data_expectativa | date:"d/m/Y"}} - Valor: {{conta.valor}}
-			</div>
-			<div>
-				Descrição:
-				<a href="/receber/{{conta.id}}">{{conta.descricao}}</a>
-			</div>
-			<div>
-				Situação:
-				{% if conta.situacao == 'N' %}
-					<span class="sit_em_aberto">Em aberto</span>
+				Situação: {% if conta.situacao == 'N' %}
+				<span class="text-danger">Em aberto</span>
 				{% elif conta.situacao == 'R' %}
-					<span class="sit_pago">Recebido</span>
+				<span class="text-success">Recebido</span>
 				{% else %}
-					<span class="sit_nao_definida">Não definida</span>
+				<span class="text-warning">Não definida</span>
 				{% endif %}
 			</div>
 		</div>
-		{% endfor %}
-{% endblock %}
+	</div>
+</div>
+{% endfor %} {% endblock %}
