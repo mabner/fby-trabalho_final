@@ -1,3 +1,4 @@
+from contas.models.contas_pagar import ContasPagar
 from django.shortcuts import render
 from contas.models import *
 
@@ -15,11 +16,11 @@ def formas_pagamento(request):
     return render(request, 'formas_pagamento.html', {'formas_pagamento': formas_pagamento})
 
 
-def classif_receber(request):
-    classificacao_receber = ClassificacaoReceber.classif_receber_objects.obter_classif_contas_receber(),
+def classificacao_receber(request):
+    classificacao_receber = ClassificacaoReceber.classif_receber_objects.obter_classif_contas_receber()
     return render(request, 'classificacao_receber.html', {'classificacao_receber': classificacao_receber})
 
 
-def classif_pagar(request):
-    classificacao_pagar = ClassificacaoPagar.classif_pagar_objects.obter_classif_contas_pagar(),
+def classificacao_pagar(request):
+    classificacao_pagar = ClassificacaoPagar.classif_pagar_objects.obter_classif_contas_pagar()
     return render(request, 'classificacao_pagar.html', {'classificacao_pagar': classificacao_pagar})
