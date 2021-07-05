@@ -67,7 +67,6 @@ class ClassifPagarManager(models.Manager):
         return self.all()
 
 
-
 # Modelo da classificação de contas a pagar
 class ClassificacaoPagar(models.Model):
 
@@ -77,7 +76,7 @@ class ClassificacaoPagar(models.Model):
     classif_pagar_objects = ClassifPagarManager()
 
     def __str__(self):
-        return self.descricao
+        return (f"{self.sigla} - {self.descricao}")
 
 
 # Modelo das contas a pagar

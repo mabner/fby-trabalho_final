@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import *
+from .models.contas_pagar import ClassificacaoPagar
+from .models.contas_receber import ClassificacaoReceber
+
 
 
 def index(request):
@@ -12,17 +15,18 @@ def index(request):
 
 
 def formas_pagamento(request):
-    return HttpResponse("Cadastro de Formas de Pagamento")
+    formas_pagamento = FormaPagamento.objects.all()
+    return render(request, 'formas_pagamento.html', {'formas_pagamento': formas_pagamento})
 
 
 def classif_receber(request):
     classificacao_receber = ClassificacaoReceber.classif_receber_objects.obter_classif_contas_receber(),
-    return render(request, 'classif_contas_receber.html', {'classificacao_receber': classificacao_receber})
+    return render(request, 'classificacao_receber.html', {'classificacao_receber': classificacao_receber})
 
 
 def classif_pagar(request):
     classificacao_pagar = ClassificacaoPagar.classif_pagar_objects.obter_classif_contas_pagar(),
-    return render(request, 'classif_contas_pagar.html', {'classificacao_pagar': classificacao_pagar})
+    return render(request, 'classificacao_pagar.html', {'classificacao_pagar': classificacao_pagar})
 
 
 def pagar(request):

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from django.db.models.base import Model
 from django.db.models.deletion import SET_NULL
 from .forma_pagamento import *
 from django.db.models import Sum
