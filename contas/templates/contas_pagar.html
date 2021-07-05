@@ -3,7 +3,7 @@
 
 {% for conta in contas_pagar %}
 <div class="card w-50">
-	<a href="/pagar/{{conta.id}}" class="card-header">{{conta.descricao}}</a>
+	<a href="{% url 'detalhes_pagar' conta.id %}" class="card-header">{{conta.descricao}}</a>
 	<div class="card-body">
 		<div class="card-text">
 			<div>Vencimento: {{conta.data_vencimento | date:"d/m/Y"}}</div>

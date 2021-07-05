@@ -2,7 +2,7 @@
 from django.db import models
 from django.db.models.base import Model
 from django.db.models.deletion import SET_NULL
-from .forma_pagamento import *
+from . import *
 from django.db.models import Sum
 
 
@@ -61,27 +61,7 @@ class ReceberManager(models.Manager):
         return self.get_queryset().contas_entre_datas()
 
 
-class ClassifReceberManager(models.Manager):
-
-    # Retonar todas as classificações de contas a receber
-    def obter_classif_contas_receber(self):
-        return self.all()
-
-
-# Modelo das classificações das contas a receber
-class ClassificacaoReceber(models.Model):
-
-    sigla = models.CharField(max_length=2, null=False, default='SA')
-    descricao = models.CharField(max_length=20, null=False, default='Salário')
-
-    classif_receber_objects = ClassifReceberManager()
-
-    def __str__(self):
-        return self.descricao
-
 # Modelo das contas a receber
-
-
 class ContasReceber(models.Model):
 
     sit_escolha = [('R', 'Recebido'), ('N', 'Não recebido')]

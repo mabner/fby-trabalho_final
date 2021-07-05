@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from django.db.models.deletion import SET_NULL
-from .forma_pagamento import *
+from . import *
 from django.db.models import Sum
 
 
@@ -58,25 +58,6 @@ class PagarManager(models.Manager):
     # Retornar contas com vencimento entre datas
     def obter_contas_vencimento_entre(self):
         return self.get_queryset().contas_entre_datas()
-
-
-class ClassifPagarManager(models.Manager):
-
-    # Retonar todas as classificações de contas a pagar
-    def obter_classif_contas_pagar(self):
-        return self.all()
-
-
-# Modelo da classificação de contas a pagar
-class ClassificacaoPagar(models.Model):
-
-    sigla = models.CharField(max_length=2, null=False, default='OT')
-    descricao = models.CharField(max_length=20, null=False, default='Outros')
-
-    classif_pagar_objects = ClassifPagarManager()
-
-    def __str__(self):
-        return (f"{self.sigla} - {self.descricao}")
 
 
 # Modelo das contas a pagar

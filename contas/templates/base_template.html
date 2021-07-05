@@ -14,16 +14,16 @@
 		<div id="sidebar" class="btn-group btn-group-sm" role="group">
 			{% block sidebar %}
 			<a href="/admin" class="btn btn-outline-primary">Admin</a>
-			<a href="/" class="btn btn-outline-primary">Home</a>
-			<a href="/pagar" class="btn btn-outline-primary">Contas a pagar</a>
-			<a href="/receber" class="btn btn-outline-primary">Contas a receber</a>
+			<a href="{% url 'index' %}" class="btn btn-outline-primary">Home</a>
+			<a href="{% url 'pagar' %}" class="btn btn-outline-primary">Contas a pagar</a>
+			<a href="{% url 'receber' %}" class="btn btn-outline-primary">Contas a receber</a>
 			<button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">
 				Cadastros
 				</button>
 				<ul class="dropdown-menu">
-				<li><a class="dropdown-item" href="/classpagar">Classificação Pagamento</a></li>
-				<li><a class="dropdown-item" href="/classreceber">Classificação Recebimento</a></li>
-				<li><a class="dropdown-item" href="/formaspagamento">Formas de Pagamento</a></li>
+				<li><a class="dropdown-item" href="{% url 'classpagar' %}">Classificação Pagamento</a></li>
+				<li><a class="dropdown-item" href="{% url 'classreceber' %}">Classificação Recebimento</a></li>
+				<li><a class="dropdown-item" href="{% url 'formaspagamento' %}">Formas de Pagamento</a></li>
 				</ul>
 			{% endblock %}
 		</div>

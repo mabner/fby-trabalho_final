@@ -4,7 +4,7 @@
 {% for conta in contas_receber %}
 
 <div class="card w-50">
-	<a href="/receber/{{conta.id}}" class="card-header">{{conta.descricao}}</a>
+	<a href="{% url 'detalhes_receber' conta.id %}" class="card-header">{{conta.descricao}}</a>
 	<div class="card-body">
 		<div class="card-text">
 			<div>Previsão: {{conta.data_expectativa | date:"d/m/Y"}}</div>

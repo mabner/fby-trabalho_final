@@ -2,12 +2,12 @@
 {% block content %}
 <h1>Classificações de Contas a Pagar</h1>
 
-{% for classificacao in classificacao_pagar %}
+{% for classif in classificacao_pagar %}
 <div class="card w-50">
-  <a href="#" class="card-header">{{classificacao.descricao}}</a>
+  <a href="#" class="card-header">{{classif.descricao}}</a>
   <div class="card-body">
     <div class="card-text">
-      <div>Sigla: {{classificacao.sigla}}</div>
+      <div>Sigla: {{classif.sigla}}</div>
     </div>
   </div>
 </div>

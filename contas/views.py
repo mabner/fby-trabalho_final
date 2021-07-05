@@ -1,9 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from .models import *
-from .models.contas_pagar import ClassificacaoPagar
-from .models.contas_receber import ClassificacaoReceber
-
 
 
 def index(request):
