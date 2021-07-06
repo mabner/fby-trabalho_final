@@ -7,7 +7,7 @@
 	<div>
 		Total a receber: <span class="text-success">{{ total.a_receber }}</span>
 	</div>
-	<div>
+	<div class="fw-bold">
 		Previsão de saldo: {% if total.saldo > 0 %}
 		<span class="badge bg-success">{{ total.saldo }}</span>
 		{% elif total.saldo < 0 %} <span class="badge bg-danger">{{ total.saldo }}</span>

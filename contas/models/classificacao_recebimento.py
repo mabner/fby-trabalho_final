@@ -1,12 +1,6 @@
 # -*- coding: utf-8 -*-
+from contas.managers import ClassifReceberManager
 from django.db import models
-
-
-class ClassifReceberManager(models.Manager):
-
-    # Retonar todas as classificações de contas a receber
-    def obter_classif_contas_receber(self):
-        return self.all()
 
 
 # Modelo das classificações das contas a receber
