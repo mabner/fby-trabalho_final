@@ -9,6 +9,9 @@ from django.db.models.deletion import SET_NULL
 # Modelo das contas a receber
 class ContasReceber(models.Model):
 
+    class Meta:
+        ordering = ('data_expectativa', 'valor')
+
     sit_escolha = [('R', 'Recebido'), ('N', 'Não recebido')]
 
     data_expectativa = models.DateField(auto_now=False, auto_now_add=False)

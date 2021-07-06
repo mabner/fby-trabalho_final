@@ -9,6 +9,9 @@ from django.db.models.deletion import SET_NULL
 # Modelo das contas a pagar
 class ContasPagar(models.Model):
 
+    class Meta:
+        ordering = ('data_vencimento', 'valor')
+
     sit_escolha = [('S', 'Pago'), ('N', 'A pagar')]
 
     data_vencimento = models.DateField(auto_now=False, auto_now_add=False)
