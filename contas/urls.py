@@ -14,4 +14,5 @@ urlpatterns = [
     path('pagar/<int:idconta>',
          views.detalhar_conta_pagar, name='detalhes_pagar'),
     path('fluxo', views.fluxo_caixa, name='fluxo'),
+    path('pagar/cadastrar', views.pagar, name='cadastrar_pagar'),
 ]

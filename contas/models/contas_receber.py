@@ -95,9 +95,8 @@ class ReceberManager(models.Manager):
 
 SIT_ESCOLHA = [('R', 'Recebido'), ('N', 'Não recebido')]
 
+
 # Modelo das contas a receber
-
-
 class ContasReceber(models.Model):
 
     class Meta:
