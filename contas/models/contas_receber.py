@@ -19,7 +19,8 @@ class ContasReceber(models.Model):
     data_recebimento = models.DateField(
         auto_now=False, auto_now_add=False, null=True, blank=True)
 
-    valor = models.FloatField(null=False, default=0.00)
+    valor = models.DecimalField(
+        null=False, default=0.00, max_digits=10, decimal_places=2)
 
     descricao = models.TextField(max_length=300, null=True)
 
