@@ -125,6 +125,10 @@ class PagarManager(Manager):
     def obter_contas_em_aberto(self):
         return self.get_queryset().contas_em_aberto()
 
+    # Retornar o total a pagar do mes
+    def obter_total_pagar_mes(self):
+        return self.get_queryset().total_pagar_mes()
+
     # Obter soma das contas a pagar por classificação
     def obter_soma_pagar_classificacoes(self):
         return self.get_queryset().soma_pagar_mes_classificacao()
@@ -159,6 +163,10 @@ class ReceberManager(Manager):
     # Retornar contas a pagar
     def obter_contas_nao_recebidas(self):
         return self.get_queryset().contas_nao_recebidas()
+
+    # Retornar o total a receber no mes
+    def obter_total_receber_mes(self):
+        return self.get_queryset().total_receber_mes()
 
     # Obter soma das contas a receber por classificação
     def obter_soma_receber_classificacoes(self):
