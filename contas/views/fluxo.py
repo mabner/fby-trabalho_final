@@ -1,9 +1,10 @@
-from django.shortcuts import render
 from contas.models import *
+from django.http.request import HttpRequest
+from django.shortcuts import render
 
 
-def fluxo_caixa(request):
-    dados = request.POST
+def fluxo_caixa(request: HttpRequest):
+    dados = request.POST.get('dados', False)
     inicio_caixa = dados['inicio_caixa']
     data_inicial = dados['data_inicial'].split('-')
     data_final = dados['data_final'].split('-')
