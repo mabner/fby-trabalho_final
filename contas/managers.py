@@ -30,12 +30,21 @@ class PagarQuerySet(QuerySet):
 
     # Query para retonar a soma do mês por classificação
     def soma_pagar_mes_classificacao(self, mes, ano):
-        soma_mes_class = float(ContasPagar.pagar_objects.filter(data_vencimento__month=mes,
-                                                                data_vencimento__year=ano,
-                                                                classificacao=classificacao)
-                               .aggregate(Sum('valor'))['valor__sum'])
+        classificacoes = ClassificacaoPagar.objects.all().count()
+        valores = []
 
-    pass
+        for class_id in range(1, classificacoes):
+            soma_mes_class = float(ContasPagar.pagar_objects.filter(data_vencimento__month=mes,
+                                                                    data_vencimento__year=ano,
+                                                                    classificacao=class_id)
+                                   .aggregate(Sum('valor'))['valor__sum'])
+
+        valor = {'classificacao': ClassificacaoPagar.objects.get(id=class_id),
+                 'soma_mes_class': soma_mes_class}
+        if soma_mes_class > 0:
+            valores.append(valor)
+
+        return valores
 
     # Query para retornar contas entre período
     def contas_entre_datas(self, dataInicio, dataFim):
@@ -69,12 +78,21 @@ class ReceberQuerySet(QuerySet):
 
     # Query para retonar a soma do mês por classificação
     def soma_receber_mes_classificacao(self, mes, ano):
-        soma_mes_class = float(ContasReceber.receber_objects.filter(data_expectativa__month=mes,
-                                                                    data_expectativa__year=ano,
-                                                                    classificacao=classificacao)
-                               .aggregate(Sum('valor'))['valor__sum'])
+        classificacoes = ClassificacaoReceber.objects.all().count()
+        valores = []
 
-    pass
+        for class_id in range(1, classificacoes):
+            soma_mes_class = float(ContasReceber.receber_objects.filter(data_expectativa__month=mes,
+                                                                        data_expectativa__year=ano,
+                                                                        classificacao=class_id)
+                                   .aggregate(Sum('valor'))['valor__sum'])
+
+        valor = {'classificacao': ClassificacaoReceber.objects.get(id=class_id),
+                 'soma_mes_class': soma_mes_class}
+        if soma_mes_class > 0:
+            valores.append(valor)
+
+        return valores
 
     # Query para retornar contas entre período
     def contas_entre_datas(self, dataInicio, dataFim):
@@ -107,6 +125,10 @@ class PagarManager(Manager):
     def obter_contas_em_aberto(self):
         return self.get_queryset().contas_em_aberto()
 
+    # Obter soma das contas a pagar por classificação
+    def obter_soma_pagar_classificacoes(self):
+        return self.get_queryset().soma_pagar_mes_classificacao()
+
     # Retornar contas com vencimento entre datas
     def obter_contas_vencimento_entre(self):
         return self.get_queryset().contas_entre_datas()
@@ -137,6 +159,10 @@ class ReceberManager(Manager):
     # Retornar contas a pagar
     def obter_contas_nao_recebidas(self):
         return self.get_queryset().contas_nao_recebidas()
+
+    # Obter soma das contas a receber por classificação
+    def obter_soma_receber_classificacoes(self):
+        return self.get_queryset().soma_receber_mes_classificacao()
 
     # Retornar contas com vencimento entre datas
     def obter_contas_expectativa_entre(self):
