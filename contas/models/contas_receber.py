@@ -93,13 +93,15 @@ class ReceberManager(models.Manager):
         return self.get_queryset().contas_entre_datas()
 
 
+SIT_ESCOLHA = [('R', 'Recebido'), ('N', 'Não recebido')]
+
 # Modelo das contas a receber
+
+
 class ContasReceber(models.Model):
 
     class Meta:
         ordering = ('data_expectativa', 'valor')
-
-    sit_escolha = [('R', 'Recebido'), ('N', 'Não recebido')]
 
     data_expectativa = models.DateField(auto_now=False, auto_now_add=False)
 
@@ -120,7 +122,7 @@ class ContasReceber(models.Model):
                                    on_delete=SET_NULL,
                                    null=True)
 
-    situacao = models.CharField(choices=sit_escolha,
+    situacao = models.CharField(choices=SIT_ESCOLHA,
                                 default='N',
                                 max_length=1)
 

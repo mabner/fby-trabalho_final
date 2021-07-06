@@ -93,13 +93,14 @@ class PagarManager(models.Manager):
         return self.get_queryset().contas_entre_datas()
 
 
+SIT_ESCOLHA = [('S', 'Pago'), ('N', 'A pagar')]
+
+
 # Modelo das contas a pagar
 class ContasPagar(models.Model):
 
     class Meta:
         ordering = ('data_vencimento', 'valor')
-
-    sit_escolha = [('S', 'Pago'), ('N', 'A pagar')]
 
     data_vencimento = models.DateField(auto_now=False, auto_now_add=False)
 
@@ -120,7 +121,7 @@ class ContasPagar(models.Model):
                                    on_delete=SET_NULL,
                                    null=True)
 
-    situacao = models.CharField(choices=sit_escolha,
+    situacao = models.CharField(choices=SIT_ESCOLHA,
                                 default='N',
                                 max_length=1)
 
