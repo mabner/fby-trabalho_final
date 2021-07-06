@@ -1,5 +1,5 @@
+from contas.models.contas_receber import ContasReceber
 from django.shortcuts import render
-from contas.models import *
 
 
 def receber(request):

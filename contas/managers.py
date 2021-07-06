@@ -1,3 +1,4 @@
+# Não mudar o * para modelos específicos, causa erro de importação circular
 from .models import *
 from django.db.models import QuerySet, Manager
 from django.db.models import Sum
@@ -126,8 +127,8 @@ class PagarManager(Manager):
         return self.get_queryset().contas_em_aberto()
 
     # Retornar o total a pagar do mes
-    def obter_total_pagar_mes(self):
-        return self.get_queryset().total_pagar_mes()
+    def obter_total_pagar_mes(self, mes, ano):
+        return self.get_queryset().total_pagar_mes(mes, ano)
 
     # Obter soma das contas a pagar por classificação
     def obter_soma_pagar_classificacoes(self):
@@ -165,8 +166,8 @@ class ReceberManager(Manager):
         return self.get_queryset().contas_nao_recebidas()
 
     # Retornar o total a receber no mes
-    def obter_total_receber_mes(self):
-        return self.get_queryset().total_receber_mes()
+    def obter_total_receber_mes(self, mes, ano):
+        return self.get_queryset().total_receber_mes(mes, ano)
 
     # Obter soma das contas a receber por classificação
     def obter_soma_receber_classificacoes(self):

@@ -1,4 +1,5 @@
-from contas.models import *
+from contas.models.contas_receber import ContasReceber
+from contas.models.contas_pagar import ContasPagar
 from django.http.request import HttpRequest
 from django.shortcuts import render
 

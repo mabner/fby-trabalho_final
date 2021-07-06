@@ -1,6 +1,5 @@
 from contas.models.contas_pagar import ContasPagar
 from django.shortcuts import render
-from contas.models import *
 
 
 def pagar(request):
