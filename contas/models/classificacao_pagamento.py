@@ -1,7 +1,14 @@
 # -*- coding: utf-8 -*-
-from contas.managers import ClassifPagarManager
 from django.db import models
 
+# Classificação Pagar Manager
+
+
+class ClassifPagarManager(models.Manager):
+
+    # Retonar todas as classificações de contas a pagar
+    def obter_classif_contas_pagar(self):
+        return self.all()
 
 # Modelo da classificação de contas a pagar
 class ClassificacaoPagar(models.Model):
