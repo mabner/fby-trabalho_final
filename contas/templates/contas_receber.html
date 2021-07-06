@@ -1,6 +1,9 @@
-{% extends "base_template.html" %} {% block content %}
+{% extends "base_template_listagem.html" %}
+{% block header %}
 <h1>Listagem de Contas a Receber</h1>
+{% endblock header %}
 
+{% block listagem %}
 {% for conta in contas_receber %}
 
 <div class="card w-50">
@@ -21,4 +24,9 @@
 		</div>
 	</div>
 </div>
-{% endfor %} {% endblock %}
+{% endfor %}
+{% endblock listagem %}
+
+{% block cadastro %}
+<form action="">gdgdfgdfgd</form>
+{% endblock cadastro %}

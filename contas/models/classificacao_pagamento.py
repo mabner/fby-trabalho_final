@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 
+
 # Classificação Pagar Manager
-
-
 class ClassifPagarManager(models.Manager):
 
     # Retonar todas as classificações de contas a pagar
@@ -11,6 +10,8 @@ class ClassifPagarManager(models.Manager):
         return self.all()
 
 # Modelo da classificação de contas a pagar
+
+
 class ClassificacaoPagar(models.Model):
 
     sigla = models.CharField(max_length=2, null=False, default='OT')

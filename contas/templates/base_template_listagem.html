@@ -1,0 +1,16 @@
+{% extends "base_template.html" %}
+{% block content %}
+<div>
+  {% block header %}{% endblock header %}
+</div>
+<div class="container-flex">
+  <div class="row">
+    <div class="col-8">
+      {% block listagem %}{% endblock listagem %}
+    </div>
+    <div class="col-4">
+      {% block cadastro %}{% endblock cadastro %}
+    </div>
+  </div>
+</div>
+{% endblock content %}
