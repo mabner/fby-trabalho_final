@@ -1,0 +1,17 @@
+{% extends "base_template.html" %} {% block content %}
+<h1>Gerar Fluxo de Caixa</h1>
+
+<div class="form-group"></div>
+<form action="{% url 'fluxo' %}" method="POST">
+  {% csrf_token %}
+  <label for="inicio_caixa">Valor do suprimento: </label>
+  <input class="form-control" type="text" name="inicio_caixa" id="inicio_caixa" required>
+  <label for="data_inicial">Data inicial: </label>
+  <input class="form-control" type="date" name="data_inicial" id="data_inicial" required>
+  <label for="data_final">Data final: </label>
+  <input class="form-control" type="date" name="data_final" id="data_final" required>
+  <button class="btn btn-primary" type="submit">Gerar</button>
+</form>
+</div>
+
+{% endblock %}
