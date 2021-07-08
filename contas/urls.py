@@ -15,4 +15,5 @@ urlpatterns = [
          views.detalhar_conta_pagar, name='detalhes_pagar'),
     path('fluxo', views.fluxo_caixa, name='fluxo'),
     path('pagar/cadastrar', views.pagar, name='cadastrar_pagar'),
+    path('receber/cadastrar', views.receber, name='cadastrar_receber'),
 ]
