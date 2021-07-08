@@ -17,11 +17,11 @@ def detalhar_conta_pagar(request, idconta):
 
 
 def cadastrar_conta_pagar(request: HttpRequest):
-    classificacao = ClassificacaoPagar.classif_pagar_objects.obter_classif_contas_pagar()
+    classificacao = ClassificacaoPagar.classif_pagar_objects.obter_classif_contas_pagar().__str__
 
     if request.method == 'GET':
 
-        formapagar = FormaPagamento.pagamentos_objects.obter_formas_pagamento()
+        formapagar = FormaPagamento.pagamentos_objects.obter_formas_pagamento().__str__
         situacao = SIT_ESCOLHA
 
         return render('criar_conta_pagar.html', {
