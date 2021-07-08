@@ -2,7 +2,7 @@ from contas.models.forma_pagamento import FormaPagamento
 from contas.models.classificacao_pagamento import ClassificacaoPagar
 from django.http.request import HttpRequest
 from contas.models.contas_pagar import ContasPagar, SIT_ESCOLHA
-from django.shortcuts import render
+from django.shortcuts import redirect, render, resolve_url
 
 
 def pagar(request):
@@ -17,14 +17,14 @@ def detalhar_conta_pagar(request, idconta):
 
 
 def cadastrar_conta_pagar(request: HttpRequest):
-    classificacao = ClassificacaoPagar.objects.all()
+    classificacao = ClassificacaoPagar.classif_pagar_objects.obter_classif_contas_pagar()
 
     if request.method == 'GET':
 
-        formapagar = FormaPagamento.objects.all()
+        formapagar = FormaPagamento.pagamentos_objects.obter_formas_pagamento()
         situacao = SIT_ESCOLHA
 
-        return render('contas_pagar.html', {
+        return render('criar_conta_pagar.html', {
             'formapagar': formapagar,
             'situacao': situacao,
             'classificacao': classificacao
@@ -50,3 +50,5 @@ def cadastrar_conta_pagar(request: HttpRequest):
             formapagar=formapagar,
             situacao=situacao
         )
+
+        return redirect(resolve_url('index'))

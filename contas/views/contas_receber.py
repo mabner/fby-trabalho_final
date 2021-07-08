@@ -2,7 +2,7 @@ from contas.models.classificacao_recebimento import ClassificacaoReceber
 from django.http.request import HttpRequest
 from contas.models.forma_pagamento import FormaPagamento
 from contas.models.contas_receber import ContasReceber, SIT_ESCOLHA
-from django.shortcuts import render
+from django.shortcuts import redirect, render, resolve_url
 
 
 def receber(request):
@@ -11,20 +11,21 @@ def receber(request):
 
 
 def detalhar_conta_receber(request, idconta):
-    detalhe_conta_receber = ContasReceber.receber_objects.obter_detalhes_conta(
+    detalhe_conta_receber = ContasReceber.receber_objects.all(
         idconta)
     return render(request, 'receber_detalhes.html', {'detalhe_conta_receber': detalhe_conta_receber})
 
 
 def cadastrar_conta_receber(request: HttpRequest):
-    classificacao = ClassificacaoReceber.objects.all()
+
+    classificacao = ClassificacaoReceber.classif_receber_objects.obter_classif_contas_receber()
 
     if request.method == 'GET':
 
-        formapagar = FormaPagamento.objects.all()
         situacao = SIT_ESCOLHA
+        formapagar = FormaPagamento.pagamentos_objects.obter_formas_pagamento()
 
-        return render('contas_pagar.html', {
+        return render('contas_receber.html', {
             'formapagar': formapagar,
             'situacao': situacao,
             'classificacao': classificacao
@@ -32,7 +33,7 @@ def cadastrar_conta_receber(request: HttpRequest):
     else:
         dados = request.POST
         descricao = dados['descricao']
-        data_vencimento = dados['data_vencimento']
+        data_expectativa = dados['data_expectativa']
         data_pagamento = dados['data_pagamento']
         valor = dados['valor']
         classificacao_id = dados['classificacao']
@@ -43,10 +44,12 @@ def cadastrar_conta_receber(request: HttpRequest):
 
         ContasReceber.objects.create(
             descricao=descricao,
-            data_vencimento=data_vencimento,
+            data_expectativa=data_expectativa,
             data_pagamento=data_pagamento,
             valor=valor,
             classificacao=classificacao,
             formapagar=formapagar,
             situacao=situacao
         )
+
+        return redirect(resolve_url('index'))
