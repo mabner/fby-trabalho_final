@@ -25,6 +25,7 @@ class FormasPagamentoManager(models.Manager):
     def obter_detalhe_forma_pagamento(self, id):
         return self.get_queryset().detalhes_forma_pagamento(id)
 
+
 # Alterar para tabela com chave
 class FormaPagamento(models.Model):
 

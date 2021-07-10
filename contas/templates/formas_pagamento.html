@@ -6,7 +6,7 @@
 {% block listagem %}
 {% for formas in formas_pagamento %}
 <div class="card w-50">
-  <a href="{% url 'detalhes_pagamento' formas.id %}" class="card-header">{{formas.descricao}}</a>
+  <a href="{% url 'detalhes_forma_pagamento' formas.id %}" class="card-header">{{formas.descricao}}</a>
   <div class="card-body">
     <div class="card-text">
       <div>Sigla: {{formas.sigla}}</div>

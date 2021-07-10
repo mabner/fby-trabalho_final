@@ -4,7 +4,7 @@ from contas.models.classificacao_recebimento import ClassificacaoReceber
 from contas.models.forma_pagamento import FormaPagamento
 from contas.models.contas_receber import ContasReceber
 from contas.models.contas_pagar import ContasPagar
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
 
 def index(request):
@@ -30,7 +30,7 @@ def detalhar_forma_pagamento(request, id):
 def cadastrar_formas_pagamento(request: HttpRequest):
     if request.method == 'GET':
         formas_pagamento = FormaPagamento.pagamentos_objects.obter_formas_pagamento()
-        return render(request, 'cadastro_formas_pagamento.html', {'formas_pagamento': formas_pagamento})
+        return render(request, 'formas_pagamento.html', {'formas_pagamento': formas_pagamento})
     else:
         dados = request.POST
         _descricao = dados['descricao']
@@ -43,6 +43,13 @@ def cadastrar_formas_pagamento(request: HttpRequest):
     formas_pagamento = FormaPagamento.pagamentos_objects.obter_formas_pagamento()
 
     return render(request, 'formas_pagamento.html', {'formas_pagamento': formas_pagamento})
+
+
+def apagar_forma_pagamento(resquest, id):
+    forma_pag = FormaPagamento.pagamentos_objects.obter_detalhe_forma_pagamento(
+        id=id)
+    forma_pag.delete()
+    return redirect('/formaspagamento')
 
 
 def classificacao_receber(request):
