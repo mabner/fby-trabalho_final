@@ -21,6 +21,12 @@ def formas_pagamento(request):
     return render(request, 'formas_pagamento.html', {'formas_pagamento': formas_pagamento})
 
 
+def detalhar_forma_pagamento(request, id):
+    detalhe_forma_pagamento = FormaPagamento.pagamentos_objects.obter_detalhe_forma_pagamento(
+        id)
+    return render(request, 'formas_pag_detalhes.html', {'detalhe_forma_pagamento': detalhe_forma_pagamento})
+
+
 def cadastrar_formas_pagamento(request: HttpRequest):
     if request.method == 'GET':
         formas_pagamento = FormaPagamento.pagamentos_objects.obter_formas_pagamento()
