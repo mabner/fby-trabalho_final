@@ -16,7 +16,7 @@ def index(request):
 
 
 def formas_pagamento(request):
-    formas_pagamento = FormaPagamento.objects.all()
+    formas_pagamento = FormaPagamento.pagamentos_objects.obter_formas_pagamento()
     return render(request, 'formas_pagamento.html', {'formas_pagamento': formas_pagamento})
 
 
