@@ -1,6 +1,9 @@
-{% extends "base_template.html" %} {% block content %}
+{% extends "base_template_listagem.html" %}
+{% block header %}
 <h1>Cadastro de Formas de Pagamento</h1>
+{% endblock header %}
 
+{% block listagem %}
 {% for formas in formas_pagamento %}
 <div class="card w-50">
   <a href="#" class="card-header">{{formas.descricao}}</a>
@@ -11,4 +14,26 @@
   </div>
 </div>
 {% endfor %}
-{% endblock %}
+{% endblock listagem %}
+
+{% block cadastro %}
+<div class="form-group card">
+  <div class="card-header">Cadastrar nova forma de pagamento:</div>
+
+  <form action="{% url 'cadastrar_pagamento' %}" method="POST" class="form-g">
+    {% csrf_token %}
+
+    <label for="descricao" class="form-label">Descrição:</label>
+    <textarea name="descricao" id="descricao" cols="40" rows="4" class="form-control" required></textarea>
+
+    <label for="sigla" class="form-label">Sigla:</label>
+    <input name="sigla" id="sigla" class="form-control" required></input>
+
+    <div class="btn-group">
+      <button type="submit" class="btn btn-outline-primary bg-light m-2">Gravar</button>
+      <button type="reset" class="btn btn-outline-danger bg-light m-2">Limpar</button>
+    </div>
+
+  </form>
+</div>
+{% endblock cadastro %}

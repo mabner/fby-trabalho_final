@@ -20,6 +20,10 @@ def formas_pagamento(request):
     return render(request, 'formas_pagamento.html', {'formas_pagamento': formas_pagamento})
 
 
+def cadastrar_formas_pagamento(request):
+    pass
+
+
 def classificacao_receber(request):
     classificacao_receber = ClassificacaoReceber.classif_receber_objects.obter_classif_contas_receber()
     return render(request, 'classificacao_receber.html', {'classificacao_receber': classificacao_receber})
