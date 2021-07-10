@@ -17,12 +17,13 @@ def detalhar_conta_receber(request, idconta):
 
 
 def cadastrar_conta_receber(request: HttpRequest):
+    classificacao = ClassificacaoReceber.classif_receber_objects.obter_classif_contas_receber()
+    situacao = SIT_ESCOLHA
+    formapagar = FormaPagamento.pagamentos_objects.obter_formas_pagamento()
 
     if request.method == 'GET':
 
-        classificacao = ClassificacaoReceber.classif_receber_objects.obter_classif_contas_receber()
-        situacao = SIT_ESCOLHA
-        formapagar = FormaPagamento.pagamentos_objects.obter_formas_pagamento()
+
 
         return render('contas_receber.html', {'formapagar': formapagar,
                                               'situacao': situacao,
@@ -37,8 +38,8 @@ def cadastrar_conta_receber(request: HttpRequest):
         _classificacao_id = dados['classificacao']
         _formapagar = dados['formapagar']
         _situacao = dados['situacao']
-
-        _classificacao = ClassificacaoReceber.objects.get(id=_classificacao_id)
+        _classificacao = ClassificacaoReceber.classif_receber_objects.obter_detalhe_classif_recebimento(
+            id=_classificacao_id)
 
         ContasReceber.objects.create(
             descricao=_descricao,
