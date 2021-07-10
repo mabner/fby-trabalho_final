@@ -16,22 +16,10 @@
 			<a href="/admin" class="btn btn-outline-primary">Admin</a>
 			<a href="{% url 'index' %}" class="btn btn-outline-primary">Home</a>
 			<a href="{% url 'fluxo' %}" class="btn btn-outline-primary">Fluxo de Caixa</a>
+			<a href="{% url 'pagar' %}" class="btn btn-outline-primary">Constas a Pagar</a>
+			<a href="{% url 'receber' %}" class="btn btn-outline-primary">Constas a Receber</a>
 			<button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">
-				Constas a Pagar
-			</button>
-			<ul class="dropdown-menu">
-				<li><a class="dropdown-item" href="{% url 'pagar' %}">Listar</a></li>
-				<li><a class="dropdown-item" href="{% url 'cadastrar_pagar' %}">Cadastrar</a></li>
-			</ul>
-			<button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">
-				Constas a Receber
-			</button>
-			<ul class="dropdown-menu">
-				<li><a class="dropdown-item" href="{% url 'receber' %}">Listar</a></li>
-				<li><a class="dropdown-item" href="{% url 'cadastrar_receber' %}">Cadastrar</a></li>
-			</ul>
-			<button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">
-				Cadastros
+				Outros Cadastros
 			</button>
 			<ul class="dropdown-menu">
 				<li><a class="dropdown-item" href="{% url 'classpagar' %}">Classificação Pagamento</a></li>
