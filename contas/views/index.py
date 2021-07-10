@@ -57,6 +57,21 @@ def classificacao_receber(request):
     return render(request, 'classificacao_receber.html', {'classificacao_receber': classificacao_receber})
 
 
+def cadastrar_classificacao_receber(request: HttpRequest):
+    pass
+
+
+def apagar_classificacao_receber(request, id):
+    pass
+
 def classificacao_pagar(request):
     classificacao_pagar = ClassificacaoPagar.classif_pagar_objects.obter_classif_contas_pagar()
     return render(request, 'classificacao_pagar.html', {'classificacao_pagar': classificacao_pagar})
+
+
+def cadastrar_classificacao_pagar(request: HttpRequest):
+    pass
+
+
+def apagar_classificacao_pagar(request, id):
+    pass
