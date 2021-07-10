@@ -1,3 +1,4 @@
+from django.http.request import HttpRequest
 from contas.models.classificacao_pagamento import ClassificacaoPagar
 from contas.models.classificacao_recebimento import ClassificacaoReceber
 from contas.models.forma_pagamento import FormaPagamento
@@ -20,8 +21,22 @@ def formas_pagamento(request):
     return render(request, 'formas_pagamento.html', {'formas_pagamento': formas_pagamento})
 
 
-def cadastrar_formas_pagamento(request):
-    pass
+def cadastrar_formas_pagamento(request: HttpRequest):
+    if request.method == 'GET':
+        formas_pagamento = FormaPagamento.pagamentos_objects.obter_formas_pagamento()
+        return render(request, 'cadastro_formas_pagamento.html', {'formas_pagamento': formas_pagamento})
+    else:
+        dados = request.POST
+        _descricao = dados['descricao']
+        _sigla = dados['sigla']
+
+    pagamento = FormaPagamento(descricao=_descricao, sigla=_sigla)
+
+    pagamento.save()
+
+    formas_pagamento = FormaPagamento.pagamentos_objects.obter_formas_pagamento()
+
+    return render(request, 'formas_pagamento.html', {'formas_pagamento': formas_pagamento})
 
 
 def classificacao_receber(request):
