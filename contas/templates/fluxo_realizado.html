@@ -1,0 +1,19 @@
+{% extends "base_template.html" %} {% block content %}
+    <h1>Fluxo de Caixa Realizado</h1>
+    <div>
+        <div>
+            Total pago: <span class="text-danger">{{ fluxo_realizado.pagas }}</span>
+        </div>
+        <div>
+            Total recebido: <span class="text-success">{{ fluxo_realizado.recebidas }}</span>
+        </div>
+        <div class="fw-bold">
+            Saldo realizado: {% if fluxo_realizado.saldo > 0 %}
+            <span class="badge bg-success">{{ fluxo_realizado.saldo }}</span>
+        {% elif fluxo_realizado.saldo < 0 %} <span class="badge bg-danger">{{ fluxo_realizado.saldo }}</span>
+        {% else %}
+            <span class="badge bg-warning">{{ fluxo_realizado.saldo }}</span>
+        {% endif %}
+        </div>
+    </div>
+{% endblock %}

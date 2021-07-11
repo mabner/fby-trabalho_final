@@ -1,19 +1,10 @@
 {% extends "base_template.html" %} {% block content %}
-<h1>Total em Aberto</h1>
-<div>
-	<div>
-		Total a pagar: <span class="text-danger">{{ total.em_aberto }}</span>
-	</div>
-	<div>
-		Total a receber: <span class="text-success">{{ total.a_receber }}</span>
-	</div>
-	<div class="fw-bold">
-		Previsão de saldo: {% if total.saldo > 0 %}
-		<span class="badge bg-success">{{ total.saldo }}</span>
-		{% elif total.saldo < 0 %} <span class="badge bg-danger">{{ total.saldo }}</span>
-			{% else %}
-			<span class="badge bg-warning">{{ total.saldo }}</span>
-			{% endif %}
-	</div>
-</div>
+    <div class="card">
+        <h1 class="card-header">Controle de Contas</h1>
+        <div class="card-body">
+            <h5 class="card-title">Bem vindo ao Controle de Contas</h5>
+            <p class="card-text">Aqui você pode fazer o cadastro de suas contas a pagar e receber para ter mais controle
+                de suas finanças.</p>
+        </div>
+    </div>
 {% endblock %}
