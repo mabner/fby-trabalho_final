@@ -4,28 +4,27 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
+	dependencies = [
+			('contas', '0009_auto_20210705_2032'),
+			]
 
-    dependencies = [
-        ('contas', '0009_auto_20210705_2032'),
-    ]
-
-    operations = [
-        migrations.AlterModelOptions(
-            name='contaspagar',
-            options={'ordering': ('data_vencimento', 'valor')},
-        ),
-        migrations.AlterModelOptions(
-            name='contasreceber',
-            options={'ordering': ('data_expectativa', 'valor')},
-        ),
-        migrations.AlterField(
-            model_name='contaspagar',
-            name='valor',
-            field=models.DecimalField(decimal_places=2, default=0.0, max_digits=10),
-        ),
-        migrations.AlterField(
-            model_name='contasreceber',
-            name='valor',
-            field=models.DecimalField(decimal_places=2, default=0.0, max_digits=10),
-        ),
-    ]
+	operations = [
+			migrations.AlterModelOptions(
+					name='contaspagar',
+					options={'ordering': ('data_vencimento', 'valor')},
+					),
+			migrations.AlterModelOptions(
+					name='contasreceber',
+					options={'ordering': ('data_expectativa', 'valor')},
+					),
+			migrations.AlterField(
+					model_name='contaspagar',
+					name='valor',
+					field=models.DecimalField(decimal_places=2, default=0.0, max_digits=10),
+					),
+			migrations.AlterField(
+					model_name='contasreceber',
+					name='valor',
+					field=models.DecimalField(decimal_places=2, default=0.0, max_digits=10),
+					),
+			]

@@ -4,20 +4,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
+	dependencies = [
+			('contas', '0002_input_data'),
+			]
 
-    dependencies = [
-        ('contas', '0002_input_data'),
-    ]
-
-    operations = [
-        migrations.AlterField(
-            model_name='contaspagar',
-            name='data_pagamento',
-            field=models.DateField(null=True),
-        ),
-        migrations.AlterField(
-            model_name='contasreceber',
-            name='data_recebimento',
-            field=models.DateField(null=True),
-        ),
-    ]
+	operations = [
+			migrations.AlterField(
+					model_name='contaspagar',
+					name='data_pagamento',
+					field=models.DateField(null=True),
+					),
+			migrations.AlterField(
+					model_name='contasreceber',
+					name='data_recebimento',
+					field=models.DateField(null=True),
+					),
+			]

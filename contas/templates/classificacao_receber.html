@@ -1,14 +1,14 @@
 {% extends "base_template.html" %} {% block content %}
-<h1>Classificações de Contas a Receber</h1>
+    <h1>Classificações de Contas a Receber</h1>
 
-{% for classificacao in classificacao_receber %}
-<div class="card w-50">
-  <a href="#" class="card-header">{{classificacao.descricao}}</a>
-  <div class="card-body">
-    <div class="card-text">
-      <div>Sigla: {{classificacao.sigla}}</div>
-    </div>
-  </div>
-</div>
-{% endfor %}
+    {% for classificacao in classificacao_receber %}
+        <div class="card w-50">
+            <a href="#" class="card-header">{{ classificacao.descricao }}</a>
+            <div class="card-body">
+                <div class="card-text">
+                    <div>Sigla: {{ classificacao.sigla }}</div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 {% endblock %}
