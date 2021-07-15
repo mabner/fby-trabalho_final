@@ -1,28 +1,28 @@
 {% extends "base_template.html" %} {% block content %}
-<h1>Conta a Receber Detalhada</h1>
+    <h1>Conta a Receber Detalhada</h1>
 
-{% for conta in detalhe_conta_receber %}
-<div class="card w-50">
-	<div class="card-header">{{conta.descricao}}</div>
-	<div class="card-body">
-		<div class="card-text">
-			<div>Previsão: {{conta.data_expectativa | date:"d/m/Y"}}</div>
-			<div>Pagamento: {{conta.data_recebimento}}</div>
-			<div>Valor: {{conta.valor}}</div>
-			<div>Classificação: {{conta.classificacao}}</div>
-			<div>Forma de pagamento: {{conta.formapagar}}</div>
-			<div>
-				Situação: {% if conta.situacao == 'N' %}
-				<span class="text-danger">Em aberto</span>
-				{% elif conta.situacao == 'R' %}
-				<span class="text-success">Recebido</span>
-				{% else %}
-				<span class="text-warning">Não definida</span>
-				{% endif %}
-			</div>
-		</div>
-		<hr />
-		<a href="/receber" class="btn btn-primary">Voltar</a>
-	</div>
-</div>
-{% endfor %} {% endblock %}
+    {% for conta in detalhe_conta_receber %}
+        <div class="card w-50">
+            <div class="card-header">{{ conta.descricao }}</div>
+            <div class="card-body">
+                <div class="card-text">
+                    <div>Previsão: {{ conta.data_expectativa | date:"d/m/Y" }}</div>
+                    <div>Pagamento: {{ conta.data_recebimento }}</div>
+                    <div>Valor: {{ conta.valor }}</div>
+                    <div>Classificação: {{ conta.classificacao }}</div>
+                    <div>Forma de pagamento: {{ conta.formapagar }}</div>
+                    <div>
+                        Situação: {% if conta.situacao == 'N' %}
+                        <span class="text-danger">Em aberto</span>
+                    {% elif conta.situacao == 'R' %}
+                        <span class="text-success">Recebido</span>
+                    {% else %}
+                        <span class="text-warning">Não definida</span>
+                    {% endif %}
+                    </div>
+                </div>
+                <hr/>
+                <a href="/receber" class="btn btn-primary">Voltar</a>
+            </div>
+        </div>
+    {% endfor %} {% endblock %}

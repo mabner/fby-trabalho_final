@@ -1,11 +1,8 @@
 {% extends "base_template.html" %} {% block content %}
-<h1>Controle de Contas</h1>
-<div>
-  <div>
-    Total a pagar: <span class="text-danger">{{ total.em_aberto }}</span>
-  </div>
-  <div>
-    Total a receber: <span class="text-success">{{ total.a_receber }}</span>
-  </div>
-</div>
+    <h1>Fluxo de Caixa de {{ data_inicial }} a {{ data_final }}</h1>
+    <div>
+        <span>Valor de Suprimento: {{ inicio_caixa }}</span>
+        {% for total in total_mes %}
+        {% endfor %}
+    </div>
 {% endblock %}

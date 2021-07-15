@@ -1,0 +1,19 @@
+{% extends "base_template.html" %} {% block content %}
+    <h1>Fluxo de Caixa Previsto</h1>
+    <div>
+        <div>
+            Total a pagar: <span class="text-danger">{{ total_previsto.em_aberto }}</span>
+        </div>
+        <div>
+            Total a receber: <span class="text-success">{{ total_previsto.a_receber }}</span>
+        </div>
+        <div class="fw-bold">
+            Previsão de saldo: {% if total_previsto.saldo > 0 %}
+            <span class="badge bg-success">{{ total_previsto.saldo }}</span>
+        {% elif total_previsto.saldo < 0 %} <span class="badge bg-danger">{{ total_previsto.saldo }}</span>
+        {% else %}
+            <span class="badge bg-warning">{{ total_previsto.saldo }}</span>
+        {% endif %}
+        </div>
+    </div>
+{% endblock %}
