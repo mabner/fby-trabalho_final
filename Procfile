@@ -1,1 +1,1 @@
-heroku ps:scale web=1
+web:gunicorn -w 4 -b 0.0.0.0:$PORT -k contas main:app
